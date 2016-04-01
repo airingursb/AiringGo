@@ -1,6 +1,7 @@
 
 var chessBoard = [];
 var me = true;
+var over = false;
 
 for (var i = 0; i < 15; i++) {
     chessBoard[i] = [];
@@ -47,18 +48,36 @@ function oneStep(i, j ,me) {
 }
 
 canvas.onclick = function(e) {
+    if (over) {
+        return;
+    }
+
     var x = e.offsetX;
     var y = e.offsetY;
     var i = Math.floor(x / 30);
     var j = Math.floor(y / 30);
 
+
     if(chessBoard[i][j] == 0) {
         oneStep(i, j, me);
-        if (me) {
-            chessBoard[i][j] = 1;
-        } else {
-            chessBoard[i][j] = 2;
+        chessBoard[i][j] = 1;
+
+        for (var k = 0; k < count; k ++) {
+            if (wins[i][j][k]) {
+                myWin[k] ++;
+                airingWin[k] = 6;
+                if (myWin[k] == 5) {
+                    window.alert("Win");
+                    over = true;
+                }
+            }
+
         }
+    }
+
+    if (!over) {
         me = !me;
+        airingGo();
     }
 };
+
