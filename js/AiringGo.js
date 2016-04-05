@@ -47,12 +47,6 @@ for (var i = 0; i < 11; i++) {
     }
 }
 
-
-for (var i = 0; i < count; i++) {
-    myWin[i] = 0;
-    airingWin[i] = 0;
-}
-
 function airingGo() {
     if (over) {
         return;
@@ -123,6 +117,9 @@ function airingGo() {
         }
     }
 
+    oneStep(u, v, false);
+    chessBoard[u][v] = 2;
+
     for (var k = 0; k < count; k++) {
         if (wins[u][v][k]) {
             airingWin[k] ++;
@@ -134,8 +131,6 @@ function airingGo() {
         }
     }
 
-    oneStep(u, v, false);
-    chessBoard[u][v] = 2;
     if (!over) {
        me = !me;
     }
@@ -212,6 +207,9 @@ function airingGo2() {
         }
     }
 
+    oneStep(u, v, true);
+    chessBoard[u][v] = 1;
+
     for (var k = 0; k < count; k++) {
         if (wins[u][v][k]) {
             myWin[k] ++;
@@ -223,8 +221,6 @@ function airingGo2() {
         }
     }
 
-    oneStep(u, v, true);
-    chessBoard[u][v] = 1;
     if (!over) {
         me = !me;
     }

@@ -15,6 +15,12 @@ function startGame() {
     }
     cleanChess();
     drawChess();
+    me = true;
+    over = false;
+    for (var i = 0; i < count; i++) {
+        myWin[i] = 0;
+        airingWin[i] = 0;
+    }
     oneStep(7, 7, false);
     chessBoard[7][7] = 2;
 }
@@ -83,11 +89,12 @@ canvas.onclick = function(e) {
             }
 
         }
+        if (!over) {
+            me = !me;
+            airingGo();
+        }
     }
 
-    if (!over) {
-        me = !me;
-        airingGo();
-    }
+
 };
 
