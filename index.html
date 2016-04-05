@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <link href="css/style.css" rel="stylesheet">
-    <title></title>
+    <title>AiringGo</title>
 </head>
 <body>
+    <header>
+        <h1>
+            <div class="github-widget" data-repo="airingursb/AiringGo"></div>
+        </h1>
+
+        <div id="newgamebutton" onclick="startGame()" >AiringGo!</div>
+    </header>
     <canvas id="chess" width="450px" height="450px"></canvas>
+
+    <footer>
+
+        ©2016 <a href="http://ursb.me">Airing</a>
+    </footer>
+
 </body>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.githubRepoWidget.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/AiringGo.js"></script>
 </html>

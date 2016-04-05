@@ -1,19 +1,24 @@
 
-var chessBoard = [];
-var me = true;
-var over = false;
-
-for (var i = 0; i < 15; i++) {
-    chessBoard[i] = [];
-    for (var j = 0; j < 15; j++) {
-        chessBoard[i][j] = 0;
-    }
-}
-
 var canvas = document.getElementById("chess");
 var context = canvas.getContext("2d");
+var me = true;
+var over = false;
+var chessBoard = [];
 
-drawChess();
+function startGame() {
+
+    for (var i = 0; i < 15; i++) {
+        chessBoard[i] = [];
+        for (var j = 0; j < 15; j++) {
+            chessBoard[i][j] = 0;
+        }
+    }
+
+    drawChess();
+    oneStep(7, 7, false);
+    chessBoard[7][7] = 2;
+}
+
 
 function drawChess() {
     for (var i = 0; i < 15; i++) {
@@ -37,15 +42,16 @@ function oneStep(i, j ,me) {
     context.closePath();
     var gradient = context.createRadialGradient(15 + i * 30 + 2, 15 + j * 30 - 2, 13, 15 + i * 30 + 2, 15 + j * 30 - 2, 0);
     if (me) {
-        gradient.addColorStop(0, "#0A0A0A");
-        gradient.addColorStop(1, "#636766");
-    } else {
         gradient.addColorStop(0, "#D1D1D1");
         gradient.addColorStop(1, "#F9F9F9");
+    } else {
+        gradient.addColorStop(0, "#0A0A0A");
+        gradient.addColorStop(1, "#636766");
     }
     context.fillStyle = gradient;
     context.fill();
 }
+
 
 canvas.onclick = function(e) {
     if (over) {
@@ -67,7 +73,7 @@ canvas.onclick = function(e) {
                 myWin[k] ++;
                 airingWin[k] = 6;
                 if (myWin[k] == 5) {
-                    window.alert("Win");
+                    window.alert("You Win");
                     over = true;
                 }
             }
