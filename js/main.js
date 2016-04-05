@@ -13,12 +13,16 @@ function startGame() {
             chessBoard[i][j] = 0;
         }
     }
-
+    cleanChess();
     drawChess();
     oneStep(7, 7, false);
     chessBoard[7][7] = 2;
 }
 
+function cleanChess() {
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+}
 
 function drawChess() {
     for (var i = 0; i < 15; i++) {
